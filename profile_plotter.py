@@ -1,11 +1,17 @@
 # profile_plotter.py - 2024.09.01
 # (c) Kingsley Ezenwaka (kezenwaka@gmail.com)
+#
+# v.2.0 - 2025.02.26
+# - Refactored with numpy, pandas
+# - Implemented 'Select file' GUI
+#
+###----------------------------------
 
 from numpy import array, degrees, arctan
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator as mloc
 
         
