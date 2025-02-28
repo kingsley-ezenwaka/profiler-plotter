@@ -1,12 +1,11 @@
 # profile_plotter.py - 2024.09.01
 # (c) Kingsley Ezenwaka (kezenwaka@gmail.com)
 
-#import os
 from numpy import array, degrees, arctan
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from matplotlib.ticker import MultipleLocator as mloc
 
         
