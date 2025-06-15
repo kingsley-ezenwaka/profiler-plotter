@@ -6,11 +6,9 @@ import pandas as pd
 import numpy as np
 from tkinter import *
 from tkinter import filedialog
-import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator as mloc
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
 
 class PlotData:
     """Holds file path, data frame, calculated KP difference, and plot interval."""
@@ -50,13 +48,11 @@ class PlotData:
         except Exception as e:
             return
 
-
 def calc(df):
     """Calculates the x-axis range and determines a suitable interval for plotting."""
     diff = df.kp.max() - df.kp.min()
     interval = 0.2 if (diff <= 2.0) else 1.0 if (diff > 3) & (diff <= 15) else 2.0
     return diff, interval
-
 
 def movmean(alist, num):
     """Calculates a simple moving average over a fixed window."""
@@ -67,7 +63,6 @@ def movmean(alist, num):
         else:
             mlist.append(round(sum(alist[i - num:i]) / num, 2))
     return mlist
-
 
 def build_plot(df, diff, interval):
     """Builds and returns a matplotlib Figure with two subplots: Depth and Gradient."""
@@ -96,7 +91,6 @@ def build_plot(df, diff, interval):
     axs[1].xaxis.set_major_locator(mloc(interval))
 
     return fig
-
 
 def plot_gui(plot_data):
     """Creates and launches the Tkinter GUI for file selection, plotting, and export."""
@@ -144,7 +138,6 @@ def plot_gui(plot_data):
 
     root.mainloop()
 
-
 def draw_fig(frame, figure):
     """Embeds a Matplotlib figure into a given Tkinter frame."""
     for wdg in frame.winfo_children():
@@ -157,7 +150,6 @@ def draw_fig(frame, figure):
     # Resize root window to fit content
     root = frame.winfo_toplevel()
     root.geometry('')
-
 
 def save_fig(fig, filepath):
     """Opens a save dialog and writes the figure to disk."""
@@ -172,7 +164,6 @@ def save_fig(fig, filepath):
     if file_path:
         fig.savefig(file_path)
 
-
 def update_wdg(wdg, ww, ver):
     """Updates a widget (Entry or Spinbox) with a new value."""
     try:
@@ -185,7 +176,6 @@ def update_wdg(wdg, ww, ver):
         if ver == 1:
             wdg.configure(state='disabled')
         return
-
 
 def controller(ver, wdg, obj, tkframe=None):
     """Controls GUI-to-backend interaction using version flags."""
@@ -210,12 +200,10 @@ def controller(ver, wdg, obj, tkframe=None):
             elif ver == 4:
                 save_fig(fig, obj.fpath)
 
-
 def main():
     """Launches the GUI application."""
     new_plot_data = PlotData()
     plot_gui(new_plot_data)
-
 
 # Entry point
 main()
